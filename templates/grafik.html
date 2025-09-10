@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Grafik Data - PMC APP{% endblock %}
+
+{% block head_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+<header class="main-header"><h1>Grafik Perbandingan Data</h1></header>
+<div class="content-area">
+    <section class="filter-section card">
+        <h2><i class="fas fa-filter icon"></i>Filter Grafik</h2>
+        <div class="filter-controls">
+            <div><label for="startDate">Tanggal Mulai:</label><input type="date" id="startDate"></div>
+            <div><label for="endDate">Tanggal Selesai:</label><input type="date" id="endDate"></div>
+            <button id="viewChartButton" class="btn-primary-small"><i class="fas fa-sync-alt"></i> Tampilkan</button>
+            <button id="downloadChartButton" class="btn-primary-small" style="background-color: #28a745;"><i class="fas fa-file-excel"></i> Download</button>
+        </div>
+    </section>
+    <div class="chart-grid">
+        <section class="chart-container card">
+            <h2>Kedatangan Harian</h2>
+            <canvas id="barChart"></canvas>
+        </section>
+        <section id="late-vendor-container" class="card">
+            <h2>Peringkat Vendor Telat</h2>
+            <div class="table-wrapper">
+                <table id="lateVendorTable">
+                    <thead><tr><th>Nama Vendor</th><th>Jumlah Telat</th></tr></thead>
+                    <tbody id="lateVendorTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/grafik.js') }}"></script>
+{% endblock %}

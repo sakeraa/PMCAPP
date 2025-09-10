@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PMC APP{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {% block head_scripts %}{% endblock %}
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header"><span class="logo-text">PMC APP</span></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="{% if request.path == '/' %}active{% endif %}"><a href="/"><i class="fas fa-search"></i> Cek Vendor</a></li>
+                    <li class="has-submenu {% if request.path.startswith('/laporan') or request.path.startswith('/grafik') %}active-parent open{% endif %}">
+                        <a href="#"><i class="fas fa-list-alt"></i> Laporan</a>
+                        <ul class="submenu">
+                            <li class="{% if request.path == '/laporan' %}active{% endif %}"><a href="/laporan">Laporan Data</a></li>
+                            <li class="{% if request.path == '/grafik' %}active{% endif %}"><a href="/grafik">Grafik Data</a></li>
+                        </ul>
+                    </li>
+                    <li class="{% if request.path == '/pengaturan' %}active{% endif %}"><a href="/pengaturan"><i class="fas fa-cog"></i> Pengaturan</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="time-status"><span id="current-time"></span><span id="dynamic-date"></span></div>
+                <p class="location">TEAM PMC APP</p>
+            </div>
+        </aside>
+        <div class="main-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

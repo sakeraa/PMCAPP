@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Cek Vendor - PMC APP{% endblock %}
+
+{% block content %}
+<header class="main-header"><h1>Pencatatan Kedatangan Vendor</h1></header>
+<div class="content-area">
+    <section class="card">
+        <h2><i class="fas fa-search icon"></i> Cari Vendor</h2>
+        <div class="date-input-group" style="margin-bottom: 20px;">
+            <label for="arrivalDateInput">Tanggal Pencatatan:</label>
+            <input type="date" id="arrivalDateInput">
+        </div>
+        <input type="text" id="searchInput" placeholder="Ketik kode atau nama vendor...">
+        <ul id="resultsList" class="resultsList"></ul>
+        <p id="vendorNotFoundMessage" class="info-text" style="display:none; margin-top:10px;">
+            Vendor tidak ditemukan? <a href="/pengaturan">Tambah di menu Pengaturan</a>.
+        </p>
+    </section>
+    
+    <section class="card">
+        <h2><i class="fas fa-info-circle icon"></i>Detail & Input Kedatangan</h2>
+        <div class="detail-item"><strong>Kode Supplier:</strong> <span id="detail-kode">-</span></div>
+        <div class="detail-item"><strong>Nama Vendor:</strong> <span id="detail-nama">-</span></div>
+        <div class="detail-item"><strong>Plant:</strong> <span id="detail-plant">-</span></div>
+        <div class="detail-item"><strong>Truck Terminal:</strong> <span id="detail-terminal">-</span></div>
+        <div class="detail-item"><strong>Plan Arrival:</strong> <span id="detail-jadwal">-</span></div>
+        <hr>
+        <div class="actual-input">
+            <label for="actualHourInput">Masukkan Waktu Tiba Aktual:</label>
+            <div class="time-input-container">
+                <input type="number" id="actualHourInput" min="0" max="23" placeholder="JJ">
+                <span class="time-separator">:</span>
+                <input type="number" id="actualMinuteInput" min="0" max="59" placeholder="MM">
+            </div>
+        </div>
+        <div class="detail-item" style="margin-top: 15px;">
+            <strong>Selisih:</strong>
+            <span id="detail-selisih" class="selisih-highlight">-</span>
+        </div>
+        <button id="saveButton" class="btn-primary" style="margin-top: 20px;"><i class="fas fa-save"></i> Simpan Data Kedatangan</button>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

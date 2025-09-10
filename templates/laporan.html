@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Laporan Data - PMC APP{% endblock %}
+
+{% block content %}
+<header class="main-header"><h1>Laporan Kedatangan Vendor</h1></header>
+<div class="content-area" style="max-width: none; padding: 30px;">
+    <section class="card">
+        <h2><i class="fas fa-filter icon"></i>Filter Laporan</h2>
+        <div class="filter-controls">
+            <div><label for="startDate">Tanggal Mulai:</label><input type="date" id="startDate"></div>
+            <div><label for="endDate">Tanggal Selesai:</label><input type="date" id="endDate"></div>
+            <button id="viewReportButton" class="btn-primary-small"><i class="fas fa-sync-alt"></i> Tampilkan</button>
+            <button id="downloadButton" class="btn-primary-small" style="background-color: #28a745;"><i class="fas fa-file-excel"></i> Download</button>
+        </div>
+    </section>
+    <section class="card">
+        <h2><i class="fas fa-table icon"></i>Detail Laporan</h2>
+        <div class="table-container">
+            <table id="reportTable">
+                <thead></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/laporan.js') }}"></script>
+{% endblock %}
