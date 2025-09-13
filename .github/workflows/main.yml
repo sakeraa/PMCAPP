@@ -1,0 +1,38 @@
+# kink checker
+name: Python Application Tests
+
+# Pemicu: Jalankan robot ini setiap kali ada push atau pull request ke branch main
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# Pekerjaan yang harus dilakukan
+jobs:
+  build-and-test:
+    # Jalankan di server Ubuntu terbaru
+    runs-on: ubuntu-latest
+
+    steps:
+      # Langkah 1: Download kode dari repositori Anda
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Langkah 2: Siapkan lingkungan Python (ganti 3.10 jika perlu)
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      # Langkah 3: Install semua library yang dibutuhkan dari requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Langkah 4: Jalankan tes otomatis dengan pytest
+      - name: Run tests with pytest
+        run: |
+          pip install pytest
+          pytest
